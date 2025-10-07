@@ -6,11 +6,11 @@ The first step of my code is to create a function to prepare an input state for 
 ![alt text](resultsImages/c265cebc-ee87-4326-98c5-cabd0580cca4.png)
 
 The next function to create would be the oracle function. As mentioned before, the oracle’s job is to mark the state that is targeted by applying a phase shift (to be more specific, it is flipping the sign of the amplitude associated with the target state that we are looking for). In simple mathematical terms, the oracle produces the following transformation: oracle = 1 (if x = xtarget or 0 (otherwise). The code below produces this phase flip by applying a negative sign to the amplitude of the target state via phase kickback. The X gate turns the ∣0⟩ state to ∣1⟩, matching the target condition that we want the oracle to recognize. The CCX gate flips the ancilla bit only if both q0 and q1 are ∣1⟩. This marks the solution by flipping the ancilla bit. After that, the phase shift from the first step is undone and q1 is brought back to its original state by applying a second X gate.
-![alt text](16fdd24c-0f4d-4005-80e8-04519a3ba367.png)
+![alt text](resultsImages/16fdd24c-0f4d-4005-80e8-04519a3ba367.png)
 
 The final function in this algorithm is the diffusion operator. After the oracle has marked the target state, the diffusion operator applies a series of operations that increase the amplitude of the newly-marked state. Utilizing this diffusion operator will make the marked state more likely to be observed when it is time for the circuit to be measured. This can be shown in the mathematical operation D = 2∣ψ⟩⟨ψ∣ - I. D is the diffusion operator, ψ is the superposition state, and I is the identity matrix (the identity matrix allows a reflection to be produced, thus making sure the marked state’s amplitude is amplified. The combination of the oracle and diffusion operator archives the maximum probability for measuring the marked state in √N time.
-![alt text](58cdcebd-aa75-4460-8e80-f8f614e2b6b0.png)
+![alt text](resultsImages/58cdcebd-aa75-4460-8e80-f8f614e2b6b0.png)
 
 After completing all the necessary functions, we can now implement Grover’s algorithm. After initializing the 2-bit quantum circuit, we iterate through it via a for-loop for how many qubits there are in the circuit. Within this for-loop, we run the oracle and diffusion operator combination to find the marked state. We clear the ancilla bit afterwards for reusability and optimization purposes. 
-![alt text](304efa67-c290-430d-a025-7eba300f5d55.png)
+![alt text](resultsImages/304efa67-c290-430d-a025-7eba300f5d55.png)
 
