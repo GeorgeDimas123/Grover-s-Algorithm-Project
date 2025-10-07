@@ -1,4 +1,4 @@
-# Quantum-Computing-Algorithm-Project-Grover-s-Algorithm
+# Qauntum Computing Algorithm Project: Grover's Algorithm
 
 Grover’s algorithm is essentially a quantum algorithm that takes in an unstructured set of N elements and finds a single element that is marked to be found. If this task was done by a classical computer, this process would be done in a O(N) timeframe, in contrast, a quantum computer utilizing this algorithm could find this element in the timeframe of O(√N). This algorithm completes this task by amplifying the marked state while suppressing the other states. In the example code that will be provided below, the quantum state ∣01⟩ will be the index of the value 2 found in array. The goal of the code is to apply Grover’s algorithm to find the index of the value 2.
 
@@ -14,3 +14,10 @@ The final function in this algorithm is the diffusion operator. After the oracle
 After completing all the necessary functions, we can now implement Grover’s algorithm. After initializing the 2-bit quantum circuit, we iterate through it via a for-loop for how many qubits there are in the circuit. Within this for-loop, we run the oracle and diffusion operator combination to find the marked state. We clear the ancilla bit afterwards for reusability and optimization purposes. 
 ![alt text](resultsImages/304efa67-c290-430d-a025-7eba300f5d55.png)
 
+Running the qskit simulation, we see that the simulation gives a 100% probability of ∣001⟩. In the oracle function, we hardcoded that the marked state we want to find is ∣01⟩, The oracle changes the sign of the amplitude of the marked state, thus ½(∣00⟩+∣01⟩+∣01⟩+∣01⟩) becomes ½(∣00⟩-∣01⟩+∣01⟩+∣01⟩). Afterwards, the diffusion operator amplifies the negatives state and de-amplifies the others, thus giving us a 100% probability of the amplitude of the circuit being ∣001⟩.
+![alt text](resultsImages/0d9cf3f5-8d84-47e7-a73d-5fd7a2a87c1d.png)
+
+If we run this on a real backend, we get similar results. I ran this on the Kingston quantum computer and it completed the workload in 4 seconds.
+![alt text](resultsImages/f185fb2d-5682-473e-bc66-87b5d32a9fd9.png)
+
+Grover’s algorithm is so significant because of simply how fast it is. It significantly speeds up the process of finding unstructured data searches while also utilizing much fewer steps/iterations than any classical algorithm could. There are an immense number of potential applications for Grover’s algorithm. Imagine how much faster a google search could be with Grover’s algorithm or how much more energy efficient hardware could be if this algorithm were to be implemented. Some questions I could pose would be how wide-spread this algorithm is used and have there been any attempts to make it faster (if that is even possible)?
